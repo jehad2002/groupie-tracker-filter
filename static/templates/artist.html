@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" href="/static/images/user.png" type="image/x-icon">
+    <title>Artist</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/">
+                <p class="headerTitle">Groupie Tracker</p>
+            </a>
+        </div> <!-- header -->
+
+        <div class="body">
+            <p class="imgPerson">
+                <img src="{{ .Image }}" alt="nu netu, chto podelat'">
+            </p>
+
+            <p class="color colorName">{{ .Name }}</p>
+
+            <p class="list">--Members--</p>
+            
+            <div>
+                {{ range .Members }}
+                    <div class="color">{{ . }}</div>
+                {{ end }}
+            </div>
+            <p class="creationDate">FirstAlbum: </p>
+            <p class="creationDateResult">{{ .FirstAlbum }}</p>
+            <br>
+            <p class="creationDate">CreationDate: </p>
+            <p class="creationDateResult">{{ .CreationDate }}</p>
+            <br>
+            <p class="list">--DatesLocation--</p>
+            <div>
+                {{ range $key, $value := .DatesLocations}}
+                    <p class="color color-pre">{{ $key }}:
+                    {{ range $value }}
+                        <div class="color">{{ . }}</div>
+                    {{ end }}</p>
+                {{ end }}
+            </div>
+        </div> <!-- body -->
+    </div> <!-- container -->
+</body>
+</html>

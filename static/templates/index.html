@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" href="/static/images/musical-note.png" type="image/x-icon">
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            <p class="headerTitle">Groupie Tracker</p>
+        </div> <!-- header -->
+        <form action="/filters/" method="GET" autocomplete="off">
+            <div class="filter">
+                <p class="filter-name">FILTER</p>
+                <div class="checkbox">
+                    <input type="checkbox" name="CreationDate" id="CD" class="name-first-album">
+                    <label for="CD">Creation date</label>
+                    <div>
+                        <input type="number" name="CreationDateFrom" placeholder="From year">
+                        <input type="number" name="CreationDateTo" placeholder="To year">
+                    </div>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" name="FirstAlbumDate" id="FAD" class="name-first-album">
+                    <label for="FAD">First album date</label>
+                    <div>
+                        <input type="text" name="FirstFrom" placeholder="dd-mm-yyyy">
+                        <input type="text" name="FirstTo" placeholder="dd-mm-yyyy">
+                    </div>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" name="NOM" id="NOM" class="name-first-album">
+                    <label for="NOM">Number of members</label>
+                    <div>
+                        <input type="number" name="NOMfrom" placeholder="From">
+                        <input type="number" name="NOMto" placeholder="To">
+                    </div>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" name="LocationOfConcerts" id="LOC" class="name-first-album">
+                    <label for="LOC">Location of concerts</label>
+                    <div>
+                        <input type="text" name="LOC" list="Data" placeholder="location">
+                        <datalist id="Data">
+                            {{ range . }}
+                                {{ range $key, $value := .NameCities }}
+                                    <option value="{{ $key }}" ></option>
+                                {{ end }}
+                            {{ end }}
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <input type="submit" value="filter" class="input-in">
+                </div>
+            </div>
+        </form>
+        
+        <div class="elements">
+            {{ range . }}
+                <div class="element">
+                    <p class="elementImg">
+                        <a href="/artists/{{ .ID }}">
+                            <img src="{{ .Image }}" alt="nu netu, chto podelat'">
+                        </a>
+                    </p>
+                    <p class="elementName">
+                        <a href="/artists/{{ .ID }}" class="link">
+                            {{ .Name }}
+                        </a>
+                    </p>
+                </div>  <!-- element -->
+            {{ end }}
+        </div>  <!-- elements -->
+    </div>  <!-- container -->
+</body>
+</html>
