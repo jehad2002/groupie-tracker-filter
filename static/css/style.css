@@ -1,5 +1,4 @@
 body {
-    /* background-image: url("/static/images/fonBody.jpeg"); */
     background-color: dimgrey;
     margin: 0px;
     padding: 0px;
@@ -36,16 +35,14 @@ body {
 .header {
     margin: 20px auto;
     padding-top: 30px;
-    background-image: url("/static/images/fonHeader1.jpg");
     height: 140px;
-    border-radius: 0px 50px 70px 100px;
+    border-radius: 0px 0px 70px 100px;
     box-sizing: border-box;
 }
 
 .headerError {
     margin: 20px auto;
     padding-top: 30px;
-    background-image: url("/static/images/fonHeader1.jpg");
     height: 140px;
     border-radius: 0px 50px 70px 100px;
 }

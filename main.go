@@ -296,7 +296,7 @@ func HandleFuncOwn() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/artists/", artist)
 	http.HandleFunc("/filters/", Filter)
-	log.Println(http.ListenAndServe(":8080", nil))
+	log.Println(http.ListenAndServe(":8888", nil))
 }
 func SortNameCities() {
 	ArtistsNew[0].NameCities = make(map[string]bool)
