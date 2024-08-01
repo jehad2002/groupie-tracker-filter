@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Information</title>
+    <style>
+        body {
+            background-color:    #808B96; /* Same background color as the first page */
+            font-family: 'Arial', sans-serif;
+            color: #273746; /* Brown color for text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #273746; /* White color for the header text */
+        }
+        .header h1 {
+            font-size: 72px; /* Large font size for the title */
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 
+            -2px -2px 0 #e7eef5  ,  
+             2px -2px 0 #e7eef5  ,
+            -2px  2px 0 #e7eef5  ,
+             2px  2px 0 #e7eef5  ; 
+        }
+        .details-container {
+            background-color: #e7eef5; /* Light brown background color */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .details-container h2 {
+            font-size: 28px;
+            margin: 20px 0 10px;
+            color: #273746; /* Brown color for subheaders */
+            border-bottom: 2px solid #273746; /* Clearer separation line */
+            padding-bottom: 5px;
+            width: 100%;
+            text-align: left;
+        }
+        .details-container p,
+        .details-container ul {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .details-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .details-container ul li {
+            margin-bottom: 10px;
+        }
+        .details-container .group {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ .Artist.Name }}</h1>
+    </div>
+    <div class="details-container">
+        <div class="group">
+            <h2>Members</h2>
+            <p>{{ range .Artist.Members }}{{ . }}, {{ end }}</p>
+        </div>
+        
+        <div class="group">
+            <h2>Creation Date</h2>
+            <p>{{ .Artist.Creation }}</p>
+        </div>
+        
+        <div class="group">
+            <h2>First Album</h2>
+            <p>{{ .Artist.FirstAlbum }}</p>
+        </div>
+        
+        <div class="group">
+            <h2>Concert Locations</h2>
+            <ul>
+                {{ range .Locations.Locations }}
+                <li>{{ . }}</li>
+                {{ end }}
+            </ul>
+        </div>
+        
+        <div class="group">
+            <h2>Concert Dates</h2>
+            <ul>
+                {{ range .ConcertDates.Dates }}
+                <li>{{ . }}</li>
+                {{ end }}
+            </ul>
+        </div>
+        
+        <div class="group">
+            <h2>Dates and Locations Relationship</h2>
+            <ul>
+                {{ range $date, $locations := .DatesAndLocations.DatesLocations }}
+                <li>{{ $date }}: {{ range $locations }}{{ . }}, {{ end }}</li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
